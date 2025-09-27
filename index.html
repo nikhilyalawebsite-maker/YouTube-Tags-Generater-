@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProTube Tag Generator ©2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF0000;
+            --primary-dark: #CC0000;
+            --primary-light: #FF3333;
+            --secondary: #065FD4;
+            --dark: #0F0F0F;
+            --dark-light: #272727;
+            --light: #FFFFFF;
+            --gray: #AAAAAA;
+            --gray-light: #F1F1F1;
+            --success: #28a745;
+            --warning: #ffc107;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--dark-light);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+            font-size: 32px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .logo span {
+            font-size: 12px;
+            color: var(--gray);
+            margin-left: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 15, 15, 0.8), rgba(15, 15, 15, 0.9)), 
+                        url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=1347&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: var(--gray-light);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Tool Container */
+        .tool-container {
+            background-color: var(--dark-light);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tool-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .tool-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--gray-light);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 14px 18px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            color: var(--light);
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 0, 0, 0.1);
+        }
+        
+        /* Results Section */
+        .results {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .results.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .results-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .tag-copy {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 12px;
+            transition: transform 0.2s;
+        }
+        
+        .tag-copy:hover {
+            transform: scale(1.2);
+        }
+        
+        .tag-strength {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        .strength-high { background-color: var(--success); }
+        .strength-medium { background-color: var(--warning); }
+        .strength-low { background-color: var(--gray); }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        /* Trending Keywords */
+        .trending-keywords {
+            margin-top: 50px;
+            background: var(--dark-light);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .trending-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .trending-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .keywords-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .keyword-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .keyword-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateX(5px);
+        }
+        
+        .keyword-text {
+            font-weight: 500;
+        }
+        
+        .keyword-volume {
+            font-size: 12px;
+            color: var(--gray);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: var(--dark-light);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(15, 15, 15, 0.95);
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--dark-light);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: var(--light);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--dark-light);
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        .copyright strong {
+            color: var(--primary);
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .notification.active {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .tool-container {
+                padding: 20px;
+            }
+            
+            .tool-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h1>ProTube Tag Generator<span>©2025</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#tool"><i class="fas fa-tags"></i> Generator</a></li>
+                        <li><a href="#trending"><i class="fas fa-fire"></i> Trending</a></li>
+                        <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Boost Your YouTube SEO with AI-Powered Tags</h2>
+                <p>Generate high-ranking, unique tags for your YouTube videos. Increase visibility, engagement, and subscribers with our professional tag generator.</p>
+                <a href="#tool" class="btn"><i class="fas fa-rocket"></i> Generate Tags Now</a>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Videos Optimized</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">92%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.9</div>
+                        <div class="stat-label">User Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="tool" class="container">
+        <div class="tool-container">
+            <div class="tool-header">
+                <div class="tool-title">YouTube Tag Generator</div>
+                <div class="tool-actions">
+                    <button class="btn-outline"><i class="fas fa-history"></i> Reset</button>
+                    <button class="btn-outline"><i class="fas fa-save"></i> Save</button>
+                </div>
+            </div>
+            
+            <form id="tag-generator-form">
+                <div class="form-group">
+                    <label for="video-title"><i class="fas fa-heading"></i> Video Title</label>
+                    <input type="text" id="video-title" placeholder="Enter your compelling video title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="video-description"><i class="fas fa-align-left"></i> Video Description</label>
+                    <textarea id="video-description" placeholder="Describe your video content for better tag accuracy"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="video-category"><i class="fas fa-folder"></i> Video Category</label>
+                    <select id="video-category">
+                        <option value="">Select a category</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="tech">Technology</option>
+                        <option value="education">Education</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="music">Music</option>
+                        <option value="sports">Sports</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="howto">How-to & DIY</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tag-strategy"><i class="fas fa-chess"></i> Tag Strategy</label>
+                    <select id="tag-strategy">
+                        <option value="balanced">Balanced (Recommended)</option>
+                        <option value="trending">Trending Focus</option>
+                        <option value="seo">SEO Focus</option>
+                        <option value="longtail">Long-tail Keywords</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-block"><i class="fas fa-magic"></i> Generate Professional Tags</button>
+            </form>
+            
+            <div id="results" class="results">
+                <div class="results-header">
+                    <div class="results-title">Generated Tags</div>
+                    <div class="results-meta">30 tags generated • High relevance</div>
+                </div>
+                
+                <p>Copy and paste these optimized tags into your YouTube video:</p>
+                
+                <div class="tags-container" id="tags-container">
+                    <!-- Tags will be generated here -->
+                </div>
+                
+                <div class="actions">
+                    <button id="copy-all-btn" class="btn"><i class="fas fa-copy"></i> Copy All Tags</button>
+                    <button id="analyze-btn" class="btn-outline"><i class="fas fa-chart-bar"></i> Analyze Tags</button>
+                    <button id="clear-btn" class="btn-outline"><i class="fas fa-redo"></i> Generate New</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="trending" class="trending-keywords">
+            <div class="trending-header">
+                <div class="trending-title"><i class="fas fa-fire"></i> Trending Keywords 2025</div>
+                <div class="trending-update">Updated daily</div>
+            </div>
+            
+            <div class="keywords-container" id="trending-keywords">
+                <!-- Trending keywords will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our Tag Generator?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>Our advanced algorithm analyzes your content and generates the most relevant tags for maximum visibility.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Trend Integration</h3>
+                    <p>Stay ahead of the curve with tags that incorporate current trends and seasonal content opportunities.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Generate professional-grade tags in seconds, saving you hours of manual research and brainstorming.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ProTube Tag Generator</h3>
+                    <p>The ultimate tool for YouTube creators to optimize their video tags and boost visibility.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#tool">Tag Generator</a></li>
+                        <li><a href="#trending">Trending Keywords</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#">YouTube SEO Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">API Access</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 <strong>ProTube Tag Generator</strong>. All rights reserved. This tool is protected by copyright law.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Tags copied to clipboard successfully!</span>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('tag-generator-form');
+            const results = document.getElementById('results');
+            const tagsContainer = document.getElementById('tags-container');
+            const copyAllBtn = document.getElementById('copy-all-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const notification = document.getElementById('notification');
+            const trendingKeywordsContainer = document.getElementById('trending-keywords');
+            
+            // Trending keywords database for 2025
+            const trendingKeywords = {
+                gaming: [
+                    { keyword: 'game review 2025', volume: 'High' },
+                    { keyword: 'mobile gaming tips', volume: 'High' },
+                    { keyword: 'VR gaming experience', volume: 'Medium' },
+                    { keyword: 'indie game showcase', volume: 'Medium' },
+                    { keyword: 'gaming setup 2025', volume: 'High' },
+                    { keyword: 'esports highlights', volume: 'High' }
+                ],
+                tech: [
+                    { keyword: 'AI technology 2025', volume: 'High' },
+                    { keyword: 'smart home gadgets', volume: 'High' },
+                    { keyword: 'quantum computing', volume: 'Medium' },
+                    { keyword: 'wearable tech review', volume: 'Medium' },
+                    { keyword: 'cybersecurity tips', volume: 'High' },
+                    { keyword: 'future technology', volume: 'High' }
+                ],
+                education: [
+                    { keyword: 'online learning tips', volume: 'High' },
+                    { keyword: 'career development 2025', volume: 'Medium' },
+                    { keyword: 'study techniques', volume: 'High' },
+                    { keyword: 'educational technology', volume: 'Medium' },
+                    { keyword: 'skill building', volume: 'High' },
+                    { keyword: 'lifelong learning', volume: 'Medium' }
+                ],
+                entertainment: [
+                    { keyword: 'streaming services 2025', volume: 'High' },
+                    { keyword: 'celebrity news updates', volume: 'High' },
+                    { keyword: 'movie reviews', volume: 'Medium' },
+                    { keyword: 'behind the scenes', volume: 'Medium' },
+                    { keyword: 'entertainment industry', volume: 'High' },
+                    { keyword: 'pop culture analysis', volume: 'Medium' }
+                ]
+            };
+            
+            // Display trending keywords
+            function displayTrendingKeywords() {
+                let html = '';
+                for (const category in trendingKeywords) {
+                    trendingKeywords[category].forEach(item => {
+                        html += `
+                            <div class="keyword-item">
+                                <span class="keyword-text">${item.keyword}</span>
+                                <span class="keyword-volume">${item.volume}</span>
+                            </div>
+                        `;
+                    });
+                }
+                trendingKeywordsContainer.innerHTML = html;
+            }
+            
+            displayTrendingKeywords();
+            
+            // Tag database with strength indicators
+            const tagDatabase = {
+                gaming: [
+                    { tag: 'gaming', strength: 'high' },
+                    { tag: 'gameplay', strength: 'high' },
+                    { tag: 'walkthrough', strength: 'medium' },
+                    { tag: 'review', strength: 'high' },
+                    { tag: 'lets play', strength: 'medium' },
+                    { tag: 'gamer', strength: 'high' },
+                    { tag: 'pc gaming', strength: 'medium' },
+                    { tag: 'console', strength: 'medium' },
+                    { tag: 'esports', strength: 'high' },
+                    { tag: 'stream', strength: 'high' },
+                    { tag: 'mobile gaming', strength: 'high' },
+                    { tag: 'indie games', strength: 'medium' }
+                ],
+                tech: [
+                    { tag: 'technology', strength: 'high' },
+                    { tag: 'tech', strength: 'high' },
+                    { tag: 'review', strength: 'high' },
+                    { tag: 'gadgets', strength: 'high' },
+                    { tag: 'smartphone', strength: 'high' },
+                    { tag: 'laptop', strength: 'medium' },
+                    { tag: 'unboxing', strength: 'medium' },
+                    { tag: 'tutorial', strength: 'high' },
+                    { tag: 'how to', strength: 'high' },
+                    { tag: 'tips', strength: 'medium' },
+                    { tag: 'AI', strength: 'high' },
+                    { tag: 'innovation', strength: 'medium' }
+                ],
+                education: [
+                    { tag: 'learning', strength: 'high' },
+                    { tag: 'knowledge', strength: 'high' },
+                    { tag: 'study', strength: 'medium' },
+                    { tag: 'tutorial', strength: 'high' },
+                    { tag: 'education', strength: 'high' },
+                    { tag: 'how to', strength: 'high' },
+                    { tag: 'tips', strength: 'medium' },
+                    { tag: 'guide', strength: 'medium' },
+                    { tag: 'explained', strength: 'medium' },
+                    { tag: 'lesson', strength: 'medium' },
+                    { tag: 'online course', strength: 'high' },
+                    { tag: 'skill development', strength: 'high' }
+                ],
+                entertainment: [
+                    { tag: 'funny', strength: 'high' },
+                    { tag: 'entertainment', strength: 'high' },
+                    { tag: 'comedy', strength: 'medium' },
+                    { tag: 'viral', strength: 'high' },
+                    { tag: 'trending', strength: 'high' },
+                    { tag: 'fun', strength: 'medium' },
+                    { tag: 'laugh', strength: 'medium' },
+                    { tag: 'humor', strength: 'medium' },
+                    { tag: 'prank', strength: 'medium' },
+                    { tag: 'challenge', strength: 'high' },
+                    { tag: 'reaction', strength: 'high' },
+                    { tag: 'celebrity', strength: 'high' }
+                ]
+            };
+            
+            // Common tags that work for any category
+            const commonTags = [
+                { tag: 'video', strength: 'high' },
+                { tag: 'youtube', strength: 'high' },
+                { tag: '2025', strength: 'high' },
+                { tag: 'new', strength: 'medium' },
+                { tag: 'best', strength: 'high' },
+                { tag: 'top', strength: 'high' },
+                { tag: 'latest', strength: 'medium' },
+                { tag: 'hd', strength: 'low' },
+                { tag: '4k', strength: 'medium' },
+                { tag: 'viral', strength: 'high' },
+                { tag: 'trending', strength: 'high' },
+                { tag: 'subscribe', strength: 'medium' }
+            ];
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const title = document.getElementById('video-title').value;
+                const description = document.getElementById('video-description').value;
+                const category = document.getElementById('video-category').value;
+                const strategy = document.getElementById('tag-strategy').value;
+                
+                // Generate tags based on input
+                const generatedTags = generateTags(title, description, category, strategy);
+                
+                // Display the tags
+                displayTags(generatedTags);
+                
+                // Show results section
+                results.classList.add('active');
+                
+                // Scroll to results
+                results.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            copyAllBtn.addEventListener('click', function() {
+                const tags = Array.from(document.querySelectorAll('.tag-text'))
+                    .map(tag => tag.textContent)
+                    .join(', ');
+                
+                copyToClipboard(tags);
+                showNotification();
+            });
+            
+            analyzeBtn.addEventListener('click', function() {
+                alert('Tag analysis feature coming soon! This will provide detailed metrics on your generated tags.');
+            });
+            
+            clearBtn.addEventListener('click', function() {
+                form.reset();
+                results.classList.remove('active');
+                tagsContainer.innerHTML = '';
+            });
+            
+            function generateTags(title, description, category, strategy) {
+                let tags = [];
+                
+                // Extract keywords from title
+                const titleWords = title.toLowerCase()
+                    .replace(/[^\w\s]/g, '')
+                    .split(/\s+/)
+                    .filter(word => word.length > 2);
+                
+                tags = tags.concat(titleWords.map(word => ({ tag: word, strength: 'high' })));
+                
+                // Extract keywords from description
+                if (description) {
+                    const descWords = description.toLowerCase()
+                        .replace(/[^\w\s]/g, '')
+                        .split(/\s+/)
+                        .filter(word => word.length > 3)
+                        .slice(0, 10); // Limit to first 10 words
+                    
+                    tags = tags.concat(descWords.map(word => ({ tag: word, strength: 'medium' })));
+                }
+                
+                // Add category-specific tags
+                if (category && tagDatabase[category]) {
+                    tags = tags.concat(tagDatabase[category]);
+                }
+                
+                // Add common tags
+                tags = tags.concat(commonTags);
+                
+                // Remove duplicates
+                const uniqueTags = [];
+                const seen = new Set();
+                
+                for (const tagObj of tags) {
+                    if (!seen.has(tagObj.tag)) {
+                        seen.add(tagObj.tag);
+                        uniqueTags.push(tagObj);
+                    }
+                }
+                
+                // Apply strategy
+                let sortedTags = [];
+                if (strategy === 'trending') {
+                    sortedTags = uniqueTags.sort((a, b) => {
+                        const strengthOrder = { high: 3, medium: 2, low: 1 };
+                        return strengthOrder[b.strength] - strengthOrder[a.strength];
+                    });
+                } else if (strategy === 'seo') {
+                    // For SEO, prefer longer, more specific tags
+                    sortedTags = uniqueTags.sort((a, b) => b.tag.length - a.tag.length);
+                } else if (strategy === 'longtail') {
+                    // For long-tail, prefer multi-word phrases
+                    sortedTags = uniqueTags.filter(tag => tag.tag.includes(' '));
+                    sortedTags = sortedTags.concat(uniqueTags.filter(tag => !tag.tag.includes(' ')));
+                } else {
+                    // Balanced approach
+                    sortedTags = uniqueTags.sort((a, b) => {
+                        const strengthOrder = { high: 3, medium: 2, low: 1 };
+                        return strengthOrder[b.strength] - strengthOrder[a.strength];
+                    });
+                }
+                
+                // Limit to 30 tags
+                return sortedTags.slice(0, 30);
+            }
+            
+            function displayTags(tags) {
+                tagsContainer.innerHTML = '';
+                
+                tags.forEach(tagObj => {
+                    const tagElement = document.createElement('div');
+                    tagElement.className = 'tag';
+                    
+                    const strengthSpan = document.createElement('span');
+                    strengthSpan.className = `tag-strength strength-${tagObj.strength}`;
+                    
+                    const tagText = document.createElement('span');
+                    tagText.className = 'tag-text';
+                    tagText.textContent = tagObj.tag;
+                    
+                    const copyBtn = document.createElement('button');
+                    copyBtn.className = 'tag-copy';
+                    copyBtn.innerHTML = '<i class="far fa-copy"></i>';
+                    copyBtn.title = 'Copy this tag';
+                    
+                    copyBtn.addEventListener('click', function() {
+                        copyToClipboard(tagObj.tag);
+                        showNotification();
+                    });
+                    
+                    tagElement.appendChild(strengthSpan);
+                    tagElement.appendChild(tagText);
+                    tagElement.appendChild(copyBtn);
+                    tagsContainer.appendChild(tagElement);
+                });
+            }
+            
+            function copyToClipboard(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            }
+            
+            function showNotification() {
+                notification.classList.add('active');
+                
+                setTimeout(() => {
+                    notification.classList.remove('active');
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
